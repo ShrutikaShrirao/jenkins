@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', url: 'https://github.com/Praju2302/pipeline.git'
+        git branch: 'main', url: 'https://github.com/ShrutikaShrirao/jenkins.git'
       }
     }
 stage('Check Terraform Version') {
