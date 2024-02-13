@@ -1,0 +1,53 @@
+pipeline {
+  agent any
+  stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'main', url: 'https://github.com/Praju2302/pipeline.git'
+      }
+    }
+stage('Check Terraform Version') {
+            steps {
+                // Check Terraform version
+                sh 'terraform --version'
+            }
+        }
+stage('Terraform Init') {
+            steps {
+                // Initialize Terraform
+                sh 'terraform init'
+            }
+        }
+stage('Terraform Validate') {
+            steps {
+                // Validate Terraform code
+                sh 'terraform validate'
+            }
+        }
+stage('Terraform Plan') {
+            steps {
+                // Plan Terraform changes
+                sh 'terraform plan'
+            }
+        }
+stage('Terraform Apply') {
+            steps {
+                // Apply Terraform changes
+                input "Do you approve applying Terraform changes?"
+                sh 'terraform apply -auto-approve'
+            }
+        }
+ stage('Pause for Approval') {
+            steps {
+                // Pause for 1 minute
+                sleep time: 1, unit: 'MINUTES'
+                input "Do you approve destroying Terraform infrastructure?"
+            }
+        }
+ stage('Terraform Destroy') {
+            steps {
+                sh 'terraform destroy -auto-approve'
+            }
+        }
+  }
+}
