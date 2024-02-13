@@ -60,7 +60,7 @@ variable "max_aggregation_interval" {
 #EC2 instance
 variable "instance_ami" {
   description = "AMI ID for the EC2 instance"
-  default     = "ami-0449c34f967dbf18a"
+  default     = "ami-008fe2fc65df48dac"
 }
 
 variable "instance_type" {
